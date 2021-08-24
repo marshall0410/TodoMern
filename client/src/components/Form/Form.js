@@ -34,8 +34,6 @@ const Form = () => {
                     value={postData.title} 
                     onChange={(e) => handleTextInput(e)} 
                     variant="standard" />
-                
-                <p>Hello</p>
                 <TextField 
                     id="task" 
                     label="Task"
@@ -45,8 +43,8 @@ const Form = () => {
                     value={postData.task} 
                     onChange={(e) => handleTextInput(e)} 
                     variant="standard" />
-                
                 <Button 
+                    className={styles.button}
                     size="large" 
                     variant="contained"                    
                     color="primary" 

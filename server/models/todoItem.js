@@ -2,8 +2,11 @@ import mongoose from 'mongoose';
 const {Schema} = mongoose;
 
 const todoItemSchema = new Schema({
-  title: String,
-  task: String,
+  title: {type: String, required: true},
+  task: {
+    type: String,
+    required: true,
+  },
   completed: {
     type: Boolean,
     default: false,
@@ -11,6 +14,10 @@ const todoItemSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date,
+  },
+  uid: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
   },
 });
 

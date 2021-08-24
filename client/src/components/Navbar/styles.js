@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+  },
+  logout: {
+    color: 'white',
+    borderColor: 'white'
   }
 }));
 

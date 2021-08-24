@@ -1,9 +1,17 @@
 import axios from 'axios';
-import {base} from './urls';
+import {baseURL} from './urls';
 
-const url = base+'/Todo/';
+const API = axios.create({ baseURL });
 
-export const fetchTodo = () => axios.get(url);
-export const createTodo = item => axios.post(url, item);
-export const deleteTodo = (id) => axios.delete(url+id);
-export const updateTodo = item => axios.patch(url+item._id, item);
+API.interceptors.request.use((req) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        req.headers.Authorization = `Bearer ${token}`;
+    }
+    return req;
+});
+
+export const fetchTodo = () => API.get('/Todo');
+export const createTodo = item => API.post('/Todo', item);
+export const deleteTodo = id => API.delete(`/Todo/${id}`);
+export const updateTodo = item => API.patch(`/Todo/${item._id}`, item);

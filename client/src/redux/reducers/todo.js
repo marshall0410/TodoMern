@@ -7,7 +7,7 @@ const todoReducer = (state = [], action) => {
         case CREATE:
             return [...state, action.payload];
         case UPDATE:
-            return state.map((item) => item._id === action.payload._id ? action.payload : item);
+            return state.map((item) => item._id === action.payload._id ? action.payload : item);            
         case DELETE:
             return state.filter((item) => item._id !== action.payload);
         default:

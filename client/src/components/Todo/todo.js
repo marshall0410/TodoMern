@@ -1,11 +1,19 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core';
 
 import TodoItem from './TodoItem/todoitem';
+import { getTodo } from '../../redux/actions/todo';
 
 const Todo = () => {
     const todo = useSelector((state) => state.todo);
+    const [id, setId] = useState(0);
+    const dispatch = useDispatch();
+    
+
+    useEffect(() => {
+        dispatch(getTodo());
+    }, [id, dispatch])
     
     return (
         <div>
@@ -18,7 +26,7 @@ const Todo = () => {
                         <p>No Todo</p>                        
                     ):(
                         todo.map((item) => (
-                            <Grid item sm={12} md={6}>
+                            <Grid item sm={12} md={6} key={item._id}>
                                 <TodoItem item={item}  />
                             </Grid>
                         ))                        

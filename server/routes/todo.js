@@ -6,9 +6,15 @@ import {getTodoItems,
   deleteTodoItem,
 } from '../controllers/todo.js';
 
+import {authToken} from '../middleware/auth.js';
+
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+// middleware
+router.use(authToken);
+
+// routes
 router.get('/', getTodoItems);
 router.get('/:id', getTodoItem);
 router.post('/', createTodoItem);

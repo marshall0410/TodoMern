@@ -1,20 +1,29 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import todoRoute from './routes/todo.js';
+import dotenv from 'dotenv';
 
-const PORT = 5000 || process.env.PORT;
-const CONNECTION_URL =
-  'mongodb+srv://sa:nScuMuCTJ83XyBn@cluster0.df0pz.mongodb.net/Todo?retryWrites=true&w=majority';
+import todoRouter from './routes/todo.js';
+import authRouter from './routes/auth.js';
+
+dotenv.config();
 
 const app = express();
+const PORT = 5000 || process.env.PORT;
+const DB_CONNECTION = process.env.DB_CONNECTION;
+// const DB_CONNECTION = 'mongodb+srv://sa:nScuMuCTJ83XyBn@cluster0.df0pz.mongodb.net/Todo?retryWrites=true&w=majority';
+
 
 // middleware
 app.use(cors());
 app.use(express.json());
 
+// routes
+app.use('/todo', todoRouter);
+app.use('/auth', authRouter);
+
 mongoose
-    .connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+    .connect(DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
       app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
     })
@@ -22,5 +31,4 @@ mongoose
 
 mongoose.set('useFindAndModify', false);
 
-// routes
-app.use('/Todo', todoRoute);
+

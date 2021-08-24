@@ -52,6 +52,7 @@ const TodoItem = ({item}) => {
         <div>            
             <Card className={classes.itemCard.root}>
                 <CardContent>
+                
                     <Typography variant="body2" component="p">
                         <p>
                             Status: {item.completed? <CheckIcon className={classes.check}/>: <CloseIcon className={classes.cross}/>}

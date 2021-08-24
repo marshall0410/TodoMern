@@ -1,21 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import {Container} from '@material-ui/core'
-import Navbar from './components/Navbar';
 
-import Home from './pages/home'
-import Auth from './pages/auth'
+import Alert from './components/Notification';
 
-export default () => {
+import Router from './components/Router'
+
+const App = () => {
     return(
-        <BrowserRouter>                       
+        <BrowserRouter>                                
             <Container>
-                <Navbar /> 
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/auth" component={Auth}/>
-                </Switch> 
+                <Alert />   
+                <Router />
             </Container>                       
         </BrowserRouter>
     )
 }
+
+export default App;
