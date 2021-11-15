@@ -11,7 +11,6 @@ dotenv.config();
 const app = express();
 const PORT = 5000 || process.env.PORT;
 const DB_CONNECTION = process.env.DB_CONNECTION;
-// const DB_CONNECTION = 'mongodb+srv://sa:nScuMuCTJ83XyBn@cluster0.df0pz.mongodb.net/Todo?retryWrites=true&w=majority';
 
 
 // middleware
